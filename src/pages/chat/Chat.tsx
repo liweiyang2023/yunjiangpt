@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { Loader2, PauseOctagon, SendIcon, Trash2Icon, DownloadIcon, MoreHorizontal } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 import useAppConfig from '@/hooks/use-app-config';
 import { useChatStore, useUserStore } from '@/store';
@@ -57,7 +55,6 @@ const Footer = ({
       handleSendUserMessage();
     }
   };
-  const navigator = useNavigate();
   const appConfig = useAppConfig();
 
   const handleSendUserMessage = async () => {

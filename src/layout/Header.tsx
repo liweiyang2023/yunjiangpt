@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { MoonIcon, Sun, Laptop, Languages, Github } from 'lucide-react';
@@ -15,6 +15,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import toast from 'react-hot-toast';
+import { AlertDialog, AlertDialogContent } from '@radix-ui/react-alert-dialog';
 
 export const ThemeMode = () => {
   const { t } = useTranslation();
@@ -143,6 +145,17 @@ export default function Header({ isPlain = false }) {
 
   const location = useLocation();
 
+  const openDialog = () => {
+    setIsDialogOpen(true);
+    console.log(setIsDialogOpen);
+    console.log('123');
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navList = [
     {
       path: 'user',
@@ -180,6 +193,9 @@ export default function Header({ isPlain = false }) {
       </div>
 
       <div className="flex items-center gap-2">
+        <Button onClick={openDialog} variant="ghost" className="p-0 px-2">
+          账号密码登录
+        </Button>
         <Link to="https://github.com/gptlink/gptlink-web" target="_blank">
           <Button variant="ghost" className="p-0 px-2">
             <Github size={18} />
